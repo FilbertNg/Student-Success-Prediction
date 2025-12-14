@@ -3,6 +3,6 @@ pandas
 numpy
 joblib
 plotly
-scikit-learn
-imbalanced-learn
 catboost
+scikit-learn==1.5.2
+imbalanced-learn==0.12.4
