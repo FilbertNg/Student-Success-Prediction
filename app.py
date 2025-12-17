@@ -27,7 +27,7 @@ st.markdown("""
 <style>
     /* Background Gradient */
     .stApp {
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(180deg, #0e1117 0%, #161b22 45%, #0d1117 100%);
         background-attachment: fixed;
     }
     
@@ -52,6 +52,12 @@ st.markdown("""
         background: rgba(255,255,255,0.08);
     }
     
+    [data-testid="stMetricLabel"] {
+        justify-content: center !important;
+        text-align: center !important;
+        margin-top: -22px !important;
+    }
+
     /* Text Colors */
     h1, h2, h3, h4, h5, p, span, label {
         color: #ffffff !important;
@@ -163,7 +169,8 @@ with col1:
     st.markdown(f"<h1 style='text-align: center; color: {pred_color} !important; margin-top: -20px;'>{pred_label}</h1>", unsafe_allow_html=True)
 
 with col2:
-    st.metric("Success Probability", f"{success_prob:.1f}%", delta=f"{success_prob-75:.1f}% vs Avg")
+    st.markdown(f"<h3 style='text-align: left; color: #aaa !important;'>Success Probability</h3>", unsafe_allow_html=True)
+    st.metric("", f"{success_prob:.1f}%", delta=f"{success_prob-75:.1f}% vs Avg")
 
 with col3:
     st.markdown(f"<h3 style='text-align: center; color: #aaa !important;'>Risk Factor</h3>", unsafe_allow_html=True)
@@ -265,7 +272,7 @@ if input_data['attendance_percentage'] < 75:
     tips.append("🏫 **Attendance Warning:** Your attendance is below 75%. This is a critical factor for distinctions. Prioritize showing up to class.")
 if input_data['social_media_hours'] + input_data['netflix_hours'] > 4:
     tips.append("📱 **Distraction Alert:** Total screen entertainment time exceeds 4 hours. Consider the 'Pomodoro' technique to reclaim study time.")
-if input_data['study_hours_per_day'] < 2:
+if input_data['study_hours_per_day'] < 3:
     tips.append("📚 **Study Routine:** Current study hours are low. Even consistent 30-minute blocks can improve retention.")
 if len(tips) == 0:
     tips.append("🌟 **Great Job!** Your metrics look balanced. Keep maintaining this lifestyle for optimal performance.")
