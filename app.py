@@ -131,7 +131,7 @@ try:
     raw_prediction = pipeline.predict(input_df)[0]
     probs = pipeline.predict_proba(input_df)[0]
     model_loaded = True
-    prediction_idx = int(raw_prediction)
+    prediction_idx = raw_prediction.items()
 except Exception as e:
     st.error(f"Model could not be loaded. Running in Demo Mode. ({e})")
     # Mock data for demonstration if file is missing
@@ -170,7 +170,12 @@ with col1:
 
 with col2:
     st.markdown(f"<h3 style='text-align: left; color: #aaa !important;'>Success Probability</h3>", unsafe_allow_html=True)
-    st.metric("", f"{success_prob:.1f}%", delta=f"{success_prob-75:.1f}% vs Avg")
+    st.metric(
+        label="Success Probability",  # Internal label for accessibility
+        value=f"{success_prob:.1f}%",
+        delta=f"{success_prob-75:.1f}% vs Avg",
+        label_visibility="collapsed"  # This hides the label text visually
+    )
 
 with col3:
     st.markdown(f"<h3 style='text-align: center; color: #aaa !important;'>Risk Factor</h3>", unsafe_allow_html=True)

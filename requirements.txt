@@ -4,5 +4,5 @@ numpy
 joblib
 plotly
 catboost
-scikit-learn==1.5.2
-imbalanced-learn==0.12.4
+scikit-learn==1.6.1
+imbalanced-learn>=0.13.0
