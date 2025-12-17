@@ -71,12 +71,26 @@ st.markdown("""
     /* Hide Default Header/Footer */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    header {
+        visibility: visible !important;
+        background: transparent !important; /* Make the bar transparent */
+    }
     
     /* Custom container padding */
     .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
+    }
+
+    [data-testid="stSidebarCollapsedControl"] {
+        display: block !important;
+        color: #ffffff !important;
+    }
+    
+    /* Optional: Ensure the icon inside is also white */
+    [data-testid="stSidebarCollapsedControl"] svg {
+        fill: #ffffff !important;
+        stroke: #ffffff !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -131,7 +145,7 @@ try:
     raw_prediction = pipeline.predict(input_df)[0]
     probs = pipeline.predict_proba(input_df)[0]
     model_loaded = True
-    prediction_idx = raw_prediction.items()
+    prediction_idx = int(raw_prediction)
 except Exception as e:
     st.error(f"Model could not be loaded. Running in Demo Mode. ({e})")
     # Mock data for demonstration if file is missing
