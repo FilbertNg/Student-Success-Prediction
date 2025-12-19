@@ -106,7 +106,6 @@ input_data = {}
 with st.sidebar.expander("📚 Academic Profile", expanded=True):
     input_data['study_hours_per_day'] = st.slider("Daily Study Hours", 0, 10, 4)
     input_data['attendance_percentage'] = st.slider("Attendance (%)", 30, 100, 85)
-    input_data['Independent_Effort'] = st.slider("Independent Effort (0-10)", 0, 10, 5)
     input_data['internet_quality'] = st.selectbox("Internet Quality", ['Poor', 'Average', 'Good'], index=2)
     input_data['part_time_job'] = st.selectbox("Part Time Job", ['No', 'Yes'])
 
@@ -228,13 +227,13 @@ with viz_col1:
 # Chart 2: Radar (Comparison)
 # Normalizing user values for the chart (approximate scales)
 # Axes: Study (max 10), Sleep (max 10), Attendance (max 100), Mental (max 10), Effort (max 10)
-categories = ['Study', 'Sleep', 'Attendance', 'Mental Health', 'Indep. Effort']
+categories = ['Study', 'Sleep', 'Attendance', 'Mental Health', 'Exercise']
 user_values = [
     input_data['study_hours_per_day'],
     input_data['sleep_hours'],
     input_data['attendance_percentage'],
     input_data['mental_health_rating'],
-    input_data['Independent_Effort']
+    input_data['exercise_frequency']
 ]
 # Normalized for visualization (scaling attendance down to 0-10 scale equivalent roughly)
 user_vis_values = [
@@ -244,7 +243,7 @@ user_vis_values = [
     user_values[3], 
     user_values[4]
 ]
-benchmark_values = [6, 8, 9.5, 8, 7] # Scaled top 10% (Attendance 95 -> 9.5)
+benchmark_values = [6, 8, 9.5, 8, 5] # Scaled top 10% (Attendance 95 -> 9.5)
 
 fig_radar = go.Figure()
 
