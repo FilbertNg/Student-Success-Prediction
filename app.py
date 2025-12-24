@@ -144,7 +144,7 @@ try:
     raw_prediction = pipeline.predict(input_df)[0]
     probs = pipeline.predict_proba(input_df)[0]
     model_loaded = True
-    prediction_idx = int(raw_prediction)
+    prediction_idx = int(raw_prediction[0])
 except Exception as e:
     st.error(f"Model could not be loaded. Running in Demo Mode. ({e})")
     # Mock data for demonstration if file is missing
